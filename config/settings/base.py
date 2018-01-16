@@ -45,10 +45,10 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    'crispy_forms',  # Form layouts
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'rest_framework', # Django REST Framework
 ]
 
 # Apps specific for this project go here.
@@ -56,6 +56,7 @@ LOCAL_APPS = [
     # custom users app
     'minstagram.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'minstagram.images.apps.ImagesConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
