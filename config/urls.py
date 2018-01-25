@@ -17,7 +17,8 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
-
+    # Image
+    url(r'^images/', include('minstagram.images.urls', namespace='images'))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

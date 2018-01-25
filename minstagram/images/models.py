@@ -35,11 +35,14 @@ class Image(TimeStampedModel):
     file = models.ImageField()
     location = models.CharField(max_length=140)
     caption = models.TextField()
-    creator = models.ForeignKey(user_models.User, null=True)
+    creator = models.ForeignKey(user_models.User, null=True, related_name='images')
 
     # string representation
     def __str__(self):
         return '{} - {}'.format(self.location, self.caption)
+
+    class Meta:
+        ordering = ['-created_at']
 
 # comment 모델
 @python_2_unicode_compatible
@@ -49,7 +52,7 @@ class Comment(TimeStampedModel):
     
     message = models.TextField()
     creator = models.ForeignKey(user_models.User, null=True)
-    image = models.ForeignKey(Image, null=True)
+    image = models.ForeignKey(Image, null=True, related_name='comments')
 
     # string representation
     def __str__(self):
@@ -62,7 +65,7 @@ class Like(TimeStampedModel):
     """ Like Model """
 
     creator = models.ForeignKey(user_models.User, null=True)
-    image = models.ForeignKey(Image)
+    image = models.ForeignKey(Image, null=True, related_name='likes')
 
     # string representation
     def __str__(self):
