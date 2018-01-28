@@ -2,6 +2,18 @@ from rest_framework import serializers
 from . import models
 from minstagram.users import models as user_models
 
+
+class CountImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Image
+        fields = (
+            'id',
+            'file',
+            'comment_count',
+            'like_count',
+        )
+
 class FeedUserSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -43,4 +55,5 @@ class ImageSerializer(serializers.ModelSerializer):
             'caption',
             'comments',
             'like_count',
+            'creator',
         )

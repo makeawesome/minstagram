@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible # python2와 호환되는지 체크
+from taggit.managers import TaggableManager
 from minstagram.users import models as user_models
 
 # 하고 싶은 것
@@ -36,11 +37,16 @@ class Image(TimeStampedModel):
     location = models.CharField(max_length=140)
     caption = models.TextField()
     creator = models.ForeignKey(user_models.User, null=True, related_name='images')
+    tags = TaggableManager()
 
     # model의 field이지만 DB에 저장되지는 않는다. 그리고 property는 function이다.
     @property
     def like_count(self): # image에 달린 likes 수
         return self.likes.all().count()
+
+    @property
+    def comment_count(self):
+        return self.comments.all().count()
 
     # string representation
     def __str__(self):

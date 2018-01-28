@@ -10,14 +10,38 @@ urlpatterns = [
     ),
 
     url(
-        regex=r'(?P<user_id>[0-9]+)/follow/$',
+        regex=r'^(?P<user_id>[0-9]+)/follow/$',
         view=views.FollowUser.as_view(),
         name='follow_user'
     ),
 
     url(
-        regex=r'(?P<user_id>[0-9]+)/unfollow/$',
+        regex=r'^(?P<user_id>[0-9]+)/unfollow/$',
         view=views.UnfollowUser.as_view(),
         name='unfollow_user'
+    ),
+
+    url(
+        regex=r'^(?P<user_name>\w+)/followers/$',
+        view=views.UserFollowers.as_view(),
+        name='user_followers'
+    ),
+
+    url(
+        regex=r'^(?P<user_name>\w+)/following/$',
+        view=views.UserFollowing.as_view(),
+        name='user_following'
+    ),
+
+    url(
+        regex=r'^search/$',
+        view=views.Search.as_view(),
+        name='search'
+    ),
+
+    url(
+        regex=r'^(?P<user_name>\w+)/$',
+        view=views.UserProfile.as_view(),
+        name='user_profile'
     ),
 ]
