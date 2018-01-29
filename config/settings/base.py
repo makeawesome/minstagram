@@ -57,7 +57,8 @@ LOCAL_APPS = [
     # custom users app
     'minstagram.users.apps.UsersConfig',
     # Your stuff: custom apps go here
-    'minstagram.images.apps.ImagesConfig',
+    'minstagram.images.apps.ImagesConfig', # image app
+    'minstagram.notifications.apps.NotificationsConfig', # notifications app
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
