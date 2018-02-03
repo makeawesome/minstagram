@@ -18,7 +18,9 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
     # Image
-    url(r'^images/', include('minstagram.images.urls', namespace='images'))
+    url(r'^images/', include('minstagram.images.urls', namespace='images')),
+    # Notifications
+    url(r'^notifications/', include('minstagram.notifications.urls', namespace='notifications')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

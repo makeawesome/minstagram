@@ -4,7 +4,7 @@ from . import models
 @admin.register(models.Notification)
 class NotificationAdmin(admin.ModelAdmin):
     
-    list_diaplay = (
+    list_display = (
         'creator',
         'to',
         'notification_type',
