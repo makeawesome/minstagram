@@ -44,4 +44,10 @@ urlpatterns = [
         view=views.UserProfile.as_view(),
         name='user_profile'
     ),
+
+    url(
+        regex=r'^(?P<user_name>\w+)/password/$',
+        view=views.ChangePassword.as_view(),
+        name='change_password'
+    ),
 ]

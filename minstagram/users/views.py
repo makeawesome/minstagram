@@ -138,3 +138,34 @@ class Search(APIView):
 
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+# 비밀번호 변경
+class ChangePassword(APIView):
+
+    def put(self, request, user_name, format=None):
+        user = request.user
+
+        # 비밀번호 변경 신청 유저가 본인이 맞는지 확인
+        if user.username != user_name:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        # 사용자가 입력한 현재 비밀번호
+        current_password = request.data.get('current_password', None)
+        # 사용자가 입력한 새로운 비밀번호
+        new_password = request.data.get('new_password', None)
+
+        if current_password is not None and new_password is not None:
+            # 사용자가 입력한 현재 비밀번호가 실제 저장된 비밀번호와 일치하는지 확인
+            password_match = user.check_password(current_password) # django에서 제공하는 method
+
+            # 일치한다면 새로운 비밀번호로 변경
+            if password_match:
+                user.set_password(new_password) # django에서 제공하는 method
+                user.save()
+
+                return Response(status=status.HTTP_200_OK)
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
