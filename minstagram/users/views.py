@@ -2,6 +2,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter # Facebook Login
+from rest_auth.registration.views import SocialLoginView # Facebook Login
 from . import models, serializers
 from minstagram.notifications import views as notification_views
 
@@ -57,12 +59,12 @@ class UnfollowUser(APIView):
 class UserProfile(APIView):
 
     def get_user(self, user_name):
- 
         try:
             found_user = models.User.objects.get(username=user_name)
         except models.User.DoesNotExist:
             return None
 
+    # 조회
     def get(self, request, user_name, format=None):
         found_user = self.get_user(user_name)
 
@@ -73,6 +75,7 @@ class UserProfile(APIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+    # 수정
     def put(self, request, user_name, format=None):
         found_user = self.get_user(user_name)
 
@@ -169,3 +172,8 @@ class ChangePassword(APIView):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+# Facebook Login
+class FacebookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter

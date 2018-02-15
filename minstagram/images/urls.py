@@ -8,7 +8,7 @@ urlpatterns = [
     # 정규식을 찾으면 view를 실행한다.
     url(
         regex = r'^$',
-        view = views.Feed.as_view(),
+        view = views.Images.as_view(),
         name = 'feed',
     ),
 

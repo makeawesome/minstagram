@@ -7,8 +7,9 @@ from minstagram.users import serializers as user_serializers
 from minstagram.notifications import views as notification_views
 
 # following 유저들이 업로드한 사진을 가져온다.
-class Feed(APIView):
+class Images(APIView):
 
+    # newsfeed
     def get(self, request, format=None): # format이 지정되지 않으면 JSON으로 Response
         user = request.user
         following_users = user.following.all() # Feed를 요청한 유저가 following 하고 있는 사람들
@@ -36,6 +37,16 @@ class Feed(APIView):
         serializer = serializers.ImageSerializer(sorted_list, many=True) # many=True 복수 개의 object를 serialize
 
         return Response(serializer.data) # serialized 된 데이터는 data에 저장되어있다.
+    
+    # image 업로드
+    def post(self, request, format=None):
+        serializer = serializers.InputImageSerializer(data=request.data)
+
+        if(serializer.is_valid):
+            serializer.save(creator=user)
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # image에 like 추가/조회

@@ -48,6 +48,7 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'allauth.socialaccount.providers.facebook', # facebook login (django-rest-auth, django-allauth)
     'rest_framework', # Django REST Framework
     'rest_framework.authtoken', 
     'taggit', # Tags for the photos
