@@ -14,3 +14,4 @@ class ReactAppView(View):
                 """ index.html not found! build your React app! """,
                 status=501,
             )
+
