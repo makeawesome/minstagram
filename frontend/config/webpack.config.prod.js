@@ -179,6 +179,8 @@ module.exports = {
 												minimize: true,
 												modules: true,
 												sourceMap: shouldUseSourceMap,
+												localIdentName: '[path][name]__[local]--[hash:base64:5]',
+												camelCase: 'dashes',
 											},
 										},
 										{
@@ -198,14 +200,15 @@ module.exports = {
 														],
 														flexbox: 'no-2009',
 													}),
-                        ],
-                        sourceMap: true,
+												],
+												sourceMap: true,
 											},
 										},
 										{
 											loader: require.resolve('sass-loader'),
 											options: {
 												sourceMap: true,
+												data: `@import "${paths.appSrc}/config/_variables.scss";`, // scss 파일마다 _varialbes.scss import
 											},
 										},
 									],

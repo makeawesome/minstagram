@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "reset-css": "^2.2.1"
   }
 }

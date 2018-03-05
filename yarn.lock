@@ -116,6 +116,10 @@ redux@^3.7.2:
     loose-envify "^1.1.0"
     symbol-observable "^1.0.3"
 
+reset-css@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/reset-css/-/reset-css-2.2.1.tgz#fe3204c0c4831979fbb4967c90a992f0164635ed"
+
 setimmediate@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
