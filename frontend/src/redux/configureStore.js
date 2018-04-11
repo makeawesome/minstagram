@@ -5,7 +5,6 @@ import createHistory from 'history/createBrowserHistory';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { i18nState } from 'redux-i18n';
 import user from 'redux/modules/user';
-import Reactotron from 'ReactotronConfig';
 
 const env = process.env.NODE_ENV; // process: node.js의 전체 정보(실행환경...)를 가지고 있는 변수
 
@@ -33,7 +32,7 @@ const reducer = combineReducers({
 let store;
 if(env === 'development'){ // 개발환경이면 Redux의 Debugging을 위해 Reactotron에서 store 생성
     store = initialState => 
-        Reactotron.createStore(reducer, composeWithDevTools(applyMiddleware(...middlewares)));
+        createStore(reducer, composeWithDevTools(applyMiddleware(...middlewares)));
 } else {
     store = initialState => 
         createStore(reducer, applyMiddleware(...middlewares));
