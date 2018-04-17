@@ -14,7 +14,7 @@ urlpatterns = [
     # User management
     #url(r'^api-token-auth/', obtain_jwt_token), # JWT
     url(r'^rest-auth/', include('rest_auth.urls')),
-     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^users/', include('minstagram.users.urls', namespace='users')),
     url(r'^accounts/', include('allauth.urls')),
 
@@ -23,10 +23,12 @@ urlpatterns = [
     url(r'^images/', include('minstagram.images.urls', namespace='images')),
     # Notifications
     url(r'^notifications/', include('minstagram.notifications.urls', namespace='notifications')),
-    # catch-all-url
-    url(r'^', views.ReactAppView.as_view()),
-
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += [
+    url(r'^', views.ReactAppViews.as_view()), # catch-all-url
+]
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

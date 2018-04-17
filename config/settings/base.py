@@ -39,7 +39,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 
     # Useful template tags:
-    # 'django.contrib.humanize',
+    'django.contrib.humanize',
 
     # Admin
     'django.contrib.admin',
@@ -300,3 +300,41 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+JWT_AUTH = {
+    'JWT_VERIFY_EXPIRATION': False # token expire을 막는다
+}
+
+SOCIALACCOUNT_PROVIDERS = {  
+    'facebook': {  
+        'SCOPE': [  
+            'email',  
+            'public_profile',  
+            'user_friends'  
+        ],  
+        'FIELDS': [  
+            'id',  
+            'email',  
+            'name',  
+            'first_name',  
+            'last_name',  
+            'verified',
+            'locale',  
+            'timezone',  
+            'link',  
+            'gender',  
+            'updated_time',
+            'picture' 
+        ],  
+        'AUTH_PARAMS': {  
+            #'auth_type': 'reauthenticate'  
+        },  
+        'METHOD': 'oauth2',  
+        #'LOCALE_FUNC': 'path.to.callable',  
+        'VERIFIED_EMAIL': True,  
+        'VERSION': 'v2.4'  
+    }
+}  
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'nomadgram.users.serializers.SignUpSerializer'
+}
